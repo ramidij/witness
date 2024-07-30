@@ -68,6 +68,7 @@ func (ro *RunOptions) AddFlags(cmd *cobra.Command) {
 type ArchivistaOptions struct {
 	Enable bool
 	Url    string
+	Token  string
 }
 
 func (o *ArchivistaOptions) AddFlags(cmd *cobra.Command) {
@@ -82,4 +83,5 @@ func (o *ArchivistaOptions) AddFlags(cmd *cobra.Command) {
 	if err := cmd.Flags().MarkHidden("archivist-server"); err != nil {
 		log.Debugf("failed to hide archivist-server flag: %w", err)
 	}
+	cmd.Flags().StringVar(&o.Url, "archivista-oidc-token", "", "OIDC Token required to authenticate with archivista instace")
 }
